@@ -1,0 +1,54 @@
+entity Farm {
+    name String required
+}
+
+entity Field {
+    name String required
+}
+
+entity Task {
+     action String required,
+     actionDate LocalDate,
+     entryDate LocalDate required,
+     type String
+}
+
+entity Nutrient {
+     n Integer,
+     p Integer,
+     k Integer,
+     note String
+}
+
+// relationship (OneToMany | ManyToOne | OneToOne | ManyToMany) {
+//       <from entity>[{<relationship name>[(<display field>)]}] to <to entity>[{<relationship name>[(<display field>)]}]
+// }
+
+relationship ManyToOne {
+    Farm{user(name)} to User,
+    Task{farm(name)} to Farm,
+    Field{farm(name)} to Farm,
+    Nutrient{farm(name)} to Farm
+}
+
+relationship ManyToOne {
+    Task{field} to Field,
+    Nutrient{field} to Field
+}
+
+relationship OneToOne {
+    Nutrient{task} to Task{nutrient}
+}
+
+
+// Set pagination options
+paginate Task, Nutrient with infinite-scroll
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options 
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
