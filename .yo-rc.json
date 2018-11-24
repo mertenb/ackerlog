@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "de.ackerlog"
+    },
+    "jhipsterVersion": "5.7.0",
+    "applicationType": "monolith",
+    "baseName": "ackerlog",
+    "packageName": "de.ackerlog",
+    "packageFolder": "de/ackerlog",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OGFmYjNlZGRlMmUwOTg0MjYyNjIzMmM4MDUwOTZjYmRjMzFlYjExOWM0OTFiZTc0MDQxODZhMGY0MTdiZThhM2M5MmRkMGQzYmNhMWQ1YTg5MWYxMWE0MDMwOTliNDIxYTRiNTUwMTAwNDg5YWE4YWVlOTc4MzE2Nzc3ZGJhYTk=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}
