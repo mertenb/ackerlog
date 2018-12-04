@@ -1,9 +1,5 @@
-entity Farm {
-    name String required
-}
-
 entity Field {
-    name String required
+    name String required minlength(1) maxlength(30)
 }
 
 entity Task {
@@ -14,6 +10,7 @@ entity Task {
 }
 
 entity Nutrient {
+    name String required minlength(1) maxlength(30), 
      n Integer,
      p Integer,
      k Integer,
@@ -25,19 +22,19 @@ entity Nutrient {
 // }
 
 relationship ManyToOne {
-    Farm{user(name)} to User,
-    Task{farm(name)} to Farm,
-    Field{farm(name)} to Farm,
-    Nutrient{farm(name)} to Farm
+    
+    Task{user(login) required} to User,
+    Field{user(login) required} to User,
+    Nutrient{user(login) required} to User
 }
 
 relationship ManyToOne {
-    Task{field} to Field,
-    Nutrient{field} to Field
+    Task{field(name)} to Field,
+    Nutrient{field(name) required} to Field
 }
 
 relationship OneToOne {
-    Nutrient{task} to Task{nutrient}
+    Task{nutrient} to Nutrient
 }
 
 
