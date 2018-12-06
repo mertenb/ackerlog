@@ -1,0 +1,57 @@
+{
+    "name": "Nutrient",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 1,
+            "fieldValidateRulesMaxlength": 30
+        },
+        {
+            "fieldName": "n",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "p",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "k",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "note",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "field",
+            "otherEntityName": "field",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20181206145502",
+    "entityTableName": "nutrient",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

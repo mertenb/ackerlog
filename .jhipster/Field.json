@@ -1,0 +1,34 @@
+{
+    "name": "Field",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 1,
+            "fieldValidateRulesMaxlength": 30
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        }
+    ],
+    "changelogDate": "20181206145500",
+    "entityTableName": "field",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

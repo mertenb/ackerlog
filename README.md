@@ -6,6 +6,7 @@ From scratch:
 0) checkout project and make mvn clean
 1) jhipster import entities.jdl
 2) add your own liquibase changelog to master.xml
+    <include file="config/liquibase/changelog/9_last_constraint.xml" relativeToChangelogFile="false"/>
 3) run ./mvnw
 4) run 
 

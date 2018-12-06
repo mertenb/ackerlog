@@ -38,6 +38,9 @@ public class CacheConfiguration {
             cm.createCache(de.ackerlog.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(de.ackerlog.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(de.ackerlog.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(de.ackerlog.domain.Field.class.getName(), jcacheConfiguration);
+            cm.createCache(de.ackerlog.domain.Task.class.getName(), jcacheConfiguration);
+            cm.createCache(de.ackerlog.domain.Nutrient.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

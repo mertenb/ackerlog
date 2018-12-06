@@ -1,0 +1,93 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-task-heading">Create or edit a Task</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!task.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="task.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_action">Action</label>
+                    <input type="text" class="form-control" name="action" id="field_action"
+                        [(ngModel)]="task.action" required/>
+                    <div [hidden]="!(editForm.controls.action?.dirty && editForm.controls.action?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.action?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_actionDate">Action Date</label>
+                    <div class="input-group">
+                        <input id="field_actionDate" type="text" class="form-control" name="actionDate" ngbDatepicker  #actionDateDp="ngbDatepicker" [(ngModel)]="task.actionDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="actionDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_entryDate">Entry Date</label>
+                    <div class="input-group">
+                        <input id="field_entryDate" type="text" class="form-control" name="entryDate" ngbDatepicker  #entryDateDp="ngbDatepicker" [(ngModel)]="task.entryDate"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="entryDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.entryDate?.dirty && editForm.controls.entryDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.entryDate?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_type">Type</label>
+                    <input type="text" class="form-control" name="type" id="field_type"
+                        [(ngModel)]="task.type" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nutrient">Nutrient</label>
+                    <select class="form-control" id="field_nutrient" name="nutrient" [(ngModel)]="task.nutrient">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="nutrientOption.id === task.nutrient?.id ? task.nutrient : nutrientOption" *ngFor="let nutrientOption of nutrients; trackBy: trackNutrientById">{{nutrientOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" [(ngModel)]="task.user"  required>
+                        <option *ngIf="!editForm.value.user" [ngValue]="null" selected></option>
+                        <option [ngValue]="userOption.id === task.user?.id ? task.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.user?.dirty && editForm.controls.user?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.user?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_field">Field</label>
+                    <select class="form-control" id="field_field" name="field" [(ngModel)]="task.field" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="fieldOption.id === task.field?.id ? task.field : fieldOption" *ngFor="let fieldOption of fields; trackBy: trackFieldById">{{fieldOption.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

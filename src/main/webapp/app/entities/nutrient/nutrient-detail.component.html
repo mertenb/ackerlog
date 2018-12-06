@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="nutrient">
+            <h2><span>Nutrient</span> {{nutrient.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{nutrient.name}}</span>
+                </dd>
+                <dt><span>N</span></dt>
+                <dd>
+                    <span>{{nutrient.n}}</span>
+                </dd>
+                <dt><span>P</span></dt>
+                <dd>
+                    <span>{{nutrient.p}}</span>
+                </dd>
+                <dt><span>K</span></dt>
+                <dd>
+                    <span>{{nutrient.k}}</span>
+                </dd>
+                <dt><span>Note</span></dt>
+                <dd>
+                    <span>{{nutrient.note}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{nutrient.user?.login}}
+                </dd>
+                <dt><span>Field</span></dt>
+                <dd>
+                    <div *ngIf="nutrient.field">
+                        <a [routerLink]="['/field', nutrient.field?.id, 'view']">{{nutrient.field?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/nutrient', nutrient.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

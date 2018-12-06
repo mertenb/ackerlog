@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span>Nutrients</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-nutrient" [routerLink]="['/nutrient/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Nutrient
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="nutrients">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span>Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="n"><span>N</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="p"><span>P</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="k"><span>K</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="note"><span>Note</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.login"><span>User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="field.name"><span>Field</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let nutrient of nutrients ;trackBy: trackId">
+                <td><a [routerLink]="['/nutrient', nutrient.id, 'view' ]">{{nutrient.id}}</a></td>
+                <td>{{nutrient.name}}</td>
+                <td>{{nutrient.n}}</td>
+                <td>{{nutrient.p}}</td>
+                <td>{{nutrient.k}}</td>
+                <td>{{nutrient.note}}</td>
+                <td>
+                    {{nutrient.user?.login}}
+                </td>
+                <td>
+                    <div *ngIf="nutrient.field">
+                        <a [routerLink]="['../field', nutrient.field?.id, 'view' ]" >{{nutrient.field?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/nutrient', nutrient.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/nutrient', nutrient.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'nutrient/'+ nutrient.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

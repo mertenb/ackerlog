@@ -1,0 +1,59 @@
+{
+    "name": "Task",
+    "fields": [
+        {
+            "fieldName": "action",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "actionDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "entryDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "nutrient",
+            "otherEntityName": "nutrient",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "task"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "field",
+            "otherEntityName": "field",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20181206145501",
+    "entityTableName": "task",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
