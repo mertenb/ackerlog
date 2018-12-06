@@ -2,6 +2,12 @@
 This application was generated using JHipster 5.7.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.7.0](https://www.jhipster.tech/documentation-archive/v5.7.0).
 
 ## Development
+From scratch:
+0) checkout project and make mvn clean
+1) jhipster import entities.jdl
+2) add your own liquibase changelog to master.xml
+3) run ./mvnw
+4) run 
 
 To start your application in the dev profile, simply run:
 

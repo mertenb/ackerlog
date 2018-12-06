@@ -1,5 +1,5 @@
 entity Field {
-    name String required unique minlength(1) maxlength(30)
+    name String required minlength(1) maxlength(30)
 }
 
 entity Task {
@@ -10,7 +10,7 @@ entity Task {
 }
 
 entity Nutrient {
-    name String required unique minlength(1) maxlength(30), 
+    name String required minlength(1) maxlength(30), 
      n Integer,
      p Integer,
      k Integer,
