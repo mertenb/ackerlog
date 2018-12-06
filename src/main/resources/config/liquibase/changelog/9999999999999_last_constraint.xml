@@ -7,8 +7,7 @@
         Added the constraints for entity Field.
     -->
     <changeSet id="999999999999_last_constraint" author="mbr">
-        
         <addUniqueConstraint tableName="field" columnNames="user_id, name"/>
-        <addUniqueConstraint tableName="nutrient" columnNames="user_id, name"/>i
+        <addUniqueConstraint tableName="nutrient" columnNames="user_id, name"/>
     </changeSet>
 </databaseChangeLog>
