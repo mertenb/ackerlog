@@ -17,6 +17,32 @@ To start your application in the dev profile, simply run:
 
 For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
 
+
+
+### Data-Model
+A User (=useraccount) is a synonim for a farm.
+
+User(1) <-- (*)Field :  bidrectctional one-to-many
+relationship ManyToOne {
+  Field{user(login)} to User
+}
+
+User(1) <-- (*)Task: unidirectional many-to-one
+relationship ManyToOne {
+  Task{user(login)} to User
+}
+
+Field(0..1) <-- (*)Task: unidirectional many-to-one
+relationship ManyToOne {
+  Task{field(name)} to Field
+}
+
+Task(1) <-- (0..1) Nutrient: 
+relationship OneToOne {
+  Task{nutrient} to Nutrient
+}
+
+
 ### Using angular-cli
 
 You can also use [Angular CLI][] to generate some custom client code.

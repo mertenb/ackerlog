@@ -1,51 +1,39 @@
 entity Field {
     name String required minlength(1) maxlength(30)
 }
-
 entity Task {
-     action String required,
-     actionDate LocalDate,
-     entryDate LocalDate required,
-     type String
+    action String required,
+    actionDate LocalDate,
+    entryDate LocalDate required,
+    type String
 }
-
 entity Nutrient {
-    name String required minlength(1) maxlength(30), 
-     n Integer,
-     p Integer,
-     k Integer,
-     note String
+    name String required minlength(1) maxlength(30),
+    n Integer,
+    p Integer,
+    k Integer,
+    note String
 }
-
 // relationship (OneToMany | ManyToOne | OneToOne | ManyToMany) {
 //       <from entity>[{<relationship name>[(<display field>)]}] to <to entity>[{<relationship name>[(<display field>)]}]
 // }
 
 relationship ManyToOne {
-    
-    Task{user(login) required} to User,
-    Field{user(login) required} to User,
-    Nutrient{user(login) required} to User
+    Field{user(login)} to User
+    Task{user(login)} to User
+    Task{field(name)} to Field
 }
-
 relationship ManyToOne {
-    Task{field(name)} to Field,
-    Nutrient{field(name) required} to Field
+    Task{field(name)} to Field , Nutrient{field(name) required} to Field
 }
-
 relationship OneToOne {
     Task{nutrient} to Nutrient
 }
-
-
 // Set pagination options
 paginate Task, Nutrient with infinite-scroll
-
 // Use Data Transfert Objects (DTO)
 // dto * with mapstruct
-
 // Set service options 
 service all with serviceImpl
-
 // Set an angular suffix
 // angularSuffix * with mySuffix
